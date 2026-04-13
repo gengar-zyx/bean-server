@@ -1,0 +1,22 @@
+option "title" "DIYgod's Book" 
+option "operating_currency" "USD" 
+option "booking_method" "LIFO" 
+option "account_rounding" "Equity:Rounding-Error" 
+
+plugin "beancount_periodic.recur" 
+
+plugin "beancount_periodic.split" 
+
+2024-01-01 custom "fava-option" "auto-reload" "true" 
+2024-01-01 custom "fava-option" "default_page" "income_statement/?conversion=units&interval=day" 
+
+2024-01-01 custom "fava-extension" "fava_portfolio_returns" "{ 
+    'beangrow_config': 'config.pbtxt', 
+    }" 
+    
+2024-01-01 custom "fava-extension" "fava_dashboards" "{ 
+    'config': 'dashboards.yaml' 
+}" 
+
+include "accounts.bean"
+include "commodity.bean"
