@@ -20,3 +20,4 @@ plugin "beancount_periodic.split"
 
 include "accounts.bean"
 include "commodity.bean"
+include "prices.bean"

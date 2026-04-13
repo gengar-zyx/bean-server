@@ -1,0 +1,12 @@
+; Add bean-price sources here.
+;
+; Examples:
+;
+; 2024-01-01 commodity AAPL
+;   price: "USD:yahoo/AAPL"
+;
+; 2024-01-01 commodity CN_600519
+;   price: "CNY:yahoo/600519.SS"
+;
+; 2024-01-01 commodity CN_000001
+;   price: "CNY:yahoo/000001.SZ"

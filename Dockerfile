@@ -18,8 +18,9 @@ FROM python:slim
 
 COPY --from=builder /install /usr/local
 COPY start-fava.sh /usr/local/bin/start-fava
+COPY scripts/update-prices.sh /usr/local/bin/update-prices
 
-RUN chmod +x /usr/local/bin/start-fava
+RUN chmod +x /usr/local/bin/start-fava /usr/local/bin/update-prices
 
 ENV FAVA_HOST=0.0.0.0
 EXPOSE 5000
