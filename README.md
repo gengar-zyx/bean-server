@@ -44,7 +44,7 @@ Run the updater with the repository mounted as `/ledger`:
 docker run --rm -v "$PWD/test:/ledger" bean-server:latest update-prices
 ```
 
-The scheduled GitHub Actions workflow runs on weekdays and appends successful price fetches to `prices.bean`. Failed individual fetches are logged by `bean-price` and successful prices are still appended.
+The scheduled GitHub Actions workflow runs daily and appends successful price fetches to `prices.bean`. Failed individual fetches are logged by `bean-price` and successful prices are still appended.
 
 To backfill from the latest existing price up to today, run with `BACKFILL=true`:
 
