@@ -10,3 +10,14 @@
 ;
 ; 2024-01-01 commodity CN_000001
 ;   price: "CNY:yahoo/000001.SZ"
+
+2025-01-01 commodity BTC 
+    name: "Bitcoin" 
+    price: "USD:coinbase/BTC-USD"
+
+2025-01-01 commodity USD 
+    name: "United States Dollar" 
+
+2025-01-01 commodity QQQ 
+    name: "NASDAQ-100 Index" 
+    price: "USD:alphavantage/price:QQQ:USD"
