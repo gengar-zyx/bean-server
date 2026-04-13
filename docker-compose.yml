@@ -1,0 +1,17 @@
+services:
+  fava:
+    image: ghcr.io/gengar-zyx/bean-server:latest
+    pull_policy: missing
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./test:/ledger
+    environment:
+      FAVA_HOST: 0.0.0.0
+      AUTO_UPDATE_PRICES: "true"
+      PRICE_UPDATE_ON_START: "true"
+      PRICE_UPDATE_INTERVAL_SECONDS: "86400"
+      BACKFILL: "false"
+      UPDATE_RATE: daily
+      WORKERS: "4"
+    restart: unless-stopped

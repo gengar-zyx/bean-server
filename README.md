@@ -1,6 +1,6 @@
 # bean-server
 
-This repository builds a Fava image with Beancount-related extensions and a daily price updater.
+This repository builds a Fava image with Beancount-related extensions and an in-container daily price updater.
 
 ## Ledger layout
 
@@ -9,6 +9,8 @@ The container expects the ledger to be mounted at `/ledger` and starts Fava with
 ```sh
 fava /ledger/main.bean
 ```
+
+The container also runs `update-prices` in the background by default. Mount `/ledger` read-write if you want generated prices to be appended to `prices.bean`.
 
 Generated prices are kept in a dedicated `prices.bean` file. Include it from `main.bean`:
 
@@ -44,7 +46,17 @@ Run the updater with the repository mounted as `/ledger`:
 docker run --rm -v "$PWD/test:/ledger" bean-server:latest update-prices
 ```
 
-The scheduled GitHub Actions workflow runs on weekdays and appends successful price fetches to `prices.bean`. Failed individual fetches are logged by `bean-price` and successful prices are still appended.
+The container runs `update-prices` once at startup and then once every 24 hours by default. Failed individual fetches are logged by `bean-price` and successful prices are still appended.
+
+The schedule can be configured with environment variables:
+
+```sh
+AUTO_UPDATE_PRICES=true
+PRICE_UPDATE_ON_START=true
+PRICE_UPDATE_INTERVAL_SECONDS=86400
+```
+
+Set `AUTO_UPDATE_PRICES=false` to run Fava without the background updater.
 
 To backfill from the latest existing price up to today, run with `BACKFILL=true`:
 
