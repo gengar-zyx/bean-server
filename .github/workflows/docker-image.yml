@@ -49,11 +49,23 @@ jobs:
       - name: Verify installed Python modules
         run: |
           docker run --rm "${TEST_IMAGE}" python -c '
+          import importlib.metadata
+          import json
+
           import fava
           import beanprice
           import beancount_periodic
           import fava_portfolio_returns
           import fava_dashboards
+
+          direct_url = importlib.metadata.distribution("beanprice").read_text("direct_url.json")
+          if not direct_url:
+              raise SystemExit("beanprice direct_url.json missing")
+          url = json.loads(direct_url).get("url", "")
+          expected_url = "https://github.com/gengar-zyx/beanprice.git"
+          if url != expected_url:
+              raise SystemExit(f"unexpected beanprice source: {url}")
+
           print("imports ok")
           '
 
