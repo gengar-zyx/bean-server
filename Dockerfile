@@ -5,12 +5,13 @@ RUN apt-get update \
         bison \
         build-essential \
         flex \
+        git \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir --root-user-action ignore --prefix="/install" \
     fava \
     fava-dashboards \
-    beanprice \
+    git+https://github.com/gengar-zyx/beanprice.git \
     beancount-periodic \
     fava-portfolio-returns
 
